@@ -34,6 +34,12 @@ const bedSchema = mongoose.Schema({
   disease: {
     type: String,
   },
+
+  patientID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "patient",
+    required: true,
+  },
 });
 
 const BedModel = mongoose.model("bed", bedSchema);
