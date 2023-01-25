@@ -27,9 +27,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { docID, password } = req.body;
   try {
-    const doctor = await DoctorModel.find({ email, password });
+    const doctor = await DoctorModel.find({ docID, password });
 
     if (doctor.length > 0) {
       res.send({ msg: "Login Successful." });

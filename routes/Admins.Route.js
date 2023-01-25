@@ -27,9 +27,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { adminID, password } = req.body;
   try {
-    const admin = await AdminModel.find({ email, password });
+    const admin = await AdminModel.find({ adminID, password });
 
     if (admin.length > 0) {
       res.send({ msg: "Login Successful." });
