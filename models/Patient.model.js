@@ -62,6 +62,10 @@ const patientSchema = mongoose.Schema({
     default: true,
   },
 
+  date: {
+    type: Date,
+  },
+
   docID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "doctor",
