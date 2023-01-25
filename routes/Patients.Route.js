@@ -1,5 +1,7 @@
 const express = require("express");
 const { PatientModel } = require("../models/Patient.model");
+const { authenticate } = require("../middlewares/patientAuth");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -33,7 +35,10 @@ router.post("/login", async (req, res) => {
     const patient = await PatientModel.findOne({ patientID, password });
 
     if (patient.length > 0) {
-      res.send({ message: "Login Successful.", user: patient, report: [] });
+      const token = jwt.sign({ patientID: patient[0]._id }, process.env.key, {
+        expiresIn: "1h",
+      });
+      res.send({ message: "Login Successful.", user: patient, token: token });
     } else {
       res.send("Wrong credentials, Please try again.");
     }

@@ -1,5 +1,7 @@
 const express = require("express");
 const { NurseModel } = require("../models/Nurse.model");
+const { authenticate } = require("../middlewares/nurseAuth");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -26,13 +28,16 @@ router.post("/register", async (req, res) => {
   res.send("Nurse Registered Successfully");
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", authenticate, async (req, res) => {
   const { nurseID, password } = req.body;
   try {
     const nurse = await NurseModel.findOne({ nurseID, password });
 
     if (nurse.length > 0) {
-      res.send({ message: "Login Successful.", user: nurse });
+      const token = jwt.sign({ nurseID: nurse[0]._id }, process.env.key, {
+        expiresIn: "1h",
+      });
+      res.send({ message: "Login Successful.", user: nurse, token: token });
     } else {
       res.send("Wrong credentials, Please try again.");
     }

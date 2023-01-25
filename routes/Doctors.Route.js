@@ -1,5 +1,7 @@
 const express = require("express");
 const { DoctorModel } = require("../models/Doctor.model");
+const { authenticate } = require("../middlewares/doctorAuth");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -26,13 +28,16 @@ router.post("/register", async (req, res) => {
   res.send("Doctor Registered Successfully");
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", authenticate, async (req, res) => {
   const { docID, password } = req.body;
   try {
     const doctor = await DoctorModel.findOne({ docID, password });
 
     if (doctor.length > 0) {
-      res.send({ messsage: "Login Successful.", user: doctor });
+      const token = jwt.sign({ doctorID: doctor[0]._id }, process.env.key, {
+        expiresIn: "1h",
+      });
+      res.send({ messsage: "Login Successful.", user: doctor, token: token });
     } else {
       res.send("Wrong credentials, Please try again.");
     }

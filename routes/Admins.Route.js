@@ -1,5 +1,7 @@
 const express = require("express");
 const { AdminModel } = require("../models/Admin.model");
+const { authenticate } = require("../middlewares/adminAuth");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -26,13 +28,16 @@ router.post("/register", async (req, res) => {
   res.send("Admin Registered Successfully");
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", authenticate, async (req, res) => {
   const { adminID, password } = req.body;
   try {
     const admin = await AdminModel.findOne({ adminID, password });
 
     if (admin.length > 0) {
-      res.send({ messsage: "Login Successful.", user: admin });
+      const token = jwt.sign({ adminID: admin[0]._id }, process.env.key, {
+        expiresIn: "1h",
+      });
+      res.send({ messsage: "Login Successful.", user: admin, token: token });
     } else {
       res.send("Wrong credentials, Please try again.");
     }
