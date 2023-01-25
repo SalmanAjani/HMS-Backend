@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const adminSchema = mongoose.Schema({
   userType: {
     type: String,
-    required: true,
     default: "admin",
   },
 
@@ -12,9 +11,12 @@ const adminSchema = mongoose.Schema({
     required: true,
   },
 
+  adminName: {
+    type: String,
+  },
+
   email: {
     type: String,
-    required: true,
   },
 
   password: {
@@ -24,17 +26,31 @@ const adminSchema = mongoose.Schema({
 
   gender: {
     type: String,
-    required: true,
   },
 
   age: {
     type: Number,
-    required: true,
   },
 
-  qualification: {
+  mobile: {
+    type: Number,
+    minlength: 10,
+  },
+
+  DOB: {
     type: String,
-    required: true,
+  },
+
+  address: {
+    type: String,
+  },
+
+  education: {
+    type: String,
+  },
+
+  image: {
+    type: String,
   },
 });
 

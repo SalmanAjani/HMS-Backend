@@ -17,7 +17,6 @@ const nurseSchema = mongoose.Schema({
 
   mobile: {
     type: Number,
-
     minlength: 10,
   },
 
