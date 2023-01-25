@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const beds = await BedModel.find().populate("patientID");
+    const beds = await BedModel.find()
+      .populate("patientID")
+      .populate("nurseID");
     res.status(200).send(beds);
   } catch (error) {
     console.log(error);
