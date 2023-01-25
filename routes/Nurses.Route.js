@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { nurseID, password } = req.body;
   try {
-    const nurse = await NurseModel.find({ nurseID, password });
+    const nurse = await NurseModel.findOne({ nurseID, password });
 
     if (nurse.length > 0) {
       res.send({ message: "Login Successful.", user: nurse });

@@ -20,8 +20,7 @@ router.post("/add", async (req, res) => {
     const ambulance = new AmbulanceModel(payload);
     await ambulance.save();
   } catch (error) {
-    res.send("Something went wrong, unable to add Ambulance.");
-    console.log(error);
+    res.send(error);
   }
   res.send("Ambulance Added Successfully");
 });

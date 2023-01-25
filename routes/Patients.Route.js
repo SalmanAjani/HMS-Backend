@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { patientID, password } = req.body;
   try {
-    const patient = await PatientModel.find({ patientID, password });
+    const patient = await PatientModel.findOne({ patientID, password });
 
     if (patient.length > 0) {
       res.send({ message: "Login Successful.", user: patient, report: [] });
