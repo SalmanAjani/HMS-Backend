@@ -22,7 +22,6 @@ const patientSchema = mongoose.Schema({
 
   email: {
     type: String,
-    sparse: true,
   },
 
   password: {
