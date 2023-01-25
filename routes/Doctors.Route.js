@@ -2,6 +2,7 @@ const express = require("express");
 const { DoctorModel } = require("../models/Doctor.model");
 const { authenticate } = require("../middlewares/doctorAuth");
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
