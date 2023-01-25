@@ -19,6 +19,7 @@ router.post("/add", async (req, res) => {
   try {
     const bed = new BedModel(payload);
     await bed.save();
+    res.send(bed);
   } catch (error) {
     res.send("Something went wrong, unable to add Bed.");
     console.log(error);
