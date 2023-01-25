@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
     const nurse = await NurseModel.find({ nurseID, password });
 
     if (nurse.length > 0) {
-      res.send({ msg: "Login Successful." });
+      res.send({ message: "Login Successful.", user: nurse });
     } else {
       res.send("Wrong credentials, Please try again.");
     }
