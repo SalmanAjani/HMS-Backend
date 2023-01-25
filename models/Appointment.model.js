@@ -28,26 +28,15 @@ const appointmentSchema = mongoose.Schema({
 
   department: {
     type: String,
-    required: true,
   },
 
-  doctor: {
-    type: String,
-    required: true,
-  },
-
-  nurse: {
-    type: String,
+  time: {
+    type: Number,
     required: true,
   },
 
   date: {
     type: String,
-    required: true,
-  },
-
-  time: {
-    type: Number,
     required: true,
   },
 
