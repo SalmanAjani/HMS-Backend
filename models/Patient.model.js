@@ -13,18 +13,15 @@ const patientSchema = mongoose.Schema({
 
   patientName: {
     type: String,
-    required: true,
   },
 
   mobile: {
     type: Number,
-    required: true,
     minlength: 10,
   },
 
   email: {
     type: String,
-    required: true,
   },
 
   password: {
@@ -34,22 +31,18 @@ const patientSchema = mongoose.Schema({
 
   age: {
     type: Number,
-    required: true,
   },
 
   gender: {
     type: String,
-    required: true,
   },
 
   bloodGroup: {
     type: String,
-    required: true,
   },
 
   DOB: {
     type: String,
-    required: true,
   },
 
   address: {
@@ -58,12 +51,10 @@ const patientSchema = mongoose.Schema({
 
   image: {
     type: String,
-    required: true,
   },
 
   details: {
     type: String,
-    required: true,
   },
 });
 
