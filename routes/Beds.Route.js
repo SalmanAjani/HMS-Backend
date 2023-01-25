@@ -5,15 +5,20 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const beds = await BedModel.find().populate({
-      path: "patientID", // populate blogs
-      populate: {
-        path: "docID", // in blogs, populate comments
+    const beds = await BedModel.find().populate(
+      {
+        path: "patientID", // populate blogs
+        populate: {
+          path: "docID", // in blogs, populate comments
+        },
       },
-      populate: {
-        path: "nurseID",
-      },
-    });
+      {
+        path: "patientID", // populate blogs
+        populate: {
+          path: "nurseID", // in blogs, populate comments
+        },
+      }
+    );
     res.status(200).send(beds);
   } catch (error) {
     console.log(error);
