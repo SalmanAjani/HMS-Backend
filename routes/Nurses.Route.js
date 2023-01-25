@@ -31,9 +31,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { nurseID, password } = req.body;
   try {
-    const nurse = await NurseModel.findOne({ nurseID, password });
+    const nurse = await NurseModel.find({ nurseID, password });
 
-    if (nurse) {
+    if (nurse.length > 0) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });

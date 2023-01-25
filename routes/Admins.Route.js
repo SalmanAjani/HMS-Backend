@@ -31,9 +31,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", authenticate, async (req, res) => {
   const { adminID, password } = req.body;
   try {
-    const admin = await AdminModel.findOne({ adminID, password });
+    const admin = await AdminModel.find({ adminID, password });
 
-    if (admin) {
+    if (admin.length > 0) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });

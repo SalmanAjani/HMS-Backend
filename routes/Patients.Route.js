@@ -32,9 +32,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { patientID, password } = req.body;
   try {
-    const patient = await PatientModel.findOne({ patientID, password });
+    const patient = await PatientModel.find({ patientID, password });
 
-    if (patient) {
+    if (patient.length > 0) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });
