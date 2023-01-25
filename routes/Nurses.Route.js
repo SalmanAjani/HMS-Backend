@@ -28,13 +28,13 @@ router.post("/register", async (req, res) => {
   res.send("Nurse Registered Successfully");
 });
 
-router.post("/login", authenticate, async (req, res) => {
+router.post("/login", async (req, res) => {
   const { nurseID, password } = req.body;
   try {
     const nurse = await NurseModel.findOne({ nurseID, password });
 
     if (nurse.length > 0) {
-      const token = jwt.sign({ nurseID: nurse[0]._id }, process.env.key, {
+      const token = jwt.sign({ field: abc }, process.env.key, {
         expiresIn: "1h",
       });
       res.send({ message: "Login Successful.", user: nurse, token: token });
