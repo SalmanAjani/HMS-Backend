@@ -10,6 +10,9 @@ router.get("/", async (req, res) => {
       populate: {
         path: "docID", // in blogs, populate comments
       },
+      populate: {
+        path: "nurseID",
+      },
     });
     res.status(200).send(beds);
   } catch (error) {
