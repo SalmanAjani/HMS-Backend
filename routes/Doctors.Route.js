@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
   try {
     const doctor = await DoctorModel.findOne({ docID, password });
 
-    if (doctor.length > 0) {
+    if (doctor) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "1h",
       });
