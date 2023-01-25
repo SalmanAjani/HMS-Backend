@@ -6,9 +6,8 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let query = req.query;
   try {
-    const doctors = await DoctorModel.find(query);
+    const doctors = await DoctorModel.find();
     res.status(200).send(doctors);
   } catch (error) {
     console.log(error);
@@ -31,9 +30,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { docID, password } = req.body;
   try {
-    const doctor = await DoctorModel.find({ docID, password });
+    const doctor = await DoctorModel.findOne({ docID, password });
 
-    if (doctor.length > 0) {
+    if (doctor) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });
