@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
   res.send("Admin Registered Successfully");
 });
 
-router.post("/login", authenticate, async (req, res) => {
+router.post("/login", async (req, res) => {
   const { adminID, password } = req.body;
   try {
     const admin = await AdminModel.find({ adminID, password });
