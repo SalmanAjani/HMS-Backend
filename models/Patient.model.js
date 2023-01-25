@@ -61,6 +61,17 @@ const patientSchema = mongoose.Schema({
     type: Boolean,
     default: true,
   },
+
+  docId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "doctor",
+    required: true,
+  },
+  nurseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "nurse",
+    required: true,
+  },
 });
 
 const PatientModel = mongoose.model("patient", patientSchema);
