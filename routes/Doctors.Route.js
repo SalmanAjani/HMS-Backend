@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { docID, password } = req.body;
   try {
-    const doctor = await DoctorModel.findOne({ docID, password });
+    const doctor = await DoctorModel.findOne({ _id: docID, password });
 
     if (doctor) {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
