@@ -20,7 +20,6 @@ router.post("/create", async (req, res) => {
     const appointment = new AppointmentModel(payload);
     await appointment.save();
   } catch (error) {
-    res.send("Error occurred, unable to book to an appointment.");
     res.send(error);
   }
   res.send("Appointment successfully booked.");
