@@ -71,6 +71,7 @@ const patientSchema = mongoose.Schema({
     ref: "doctor",
     required: true,
   },
+
   nurseID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "nurse",
