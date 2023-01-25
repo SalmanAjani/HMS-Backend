@@ -19,10 +19,10 @@ router.post("/create", async (req, res) => {
   try {
     const report = new ReportModel(payload);
     await report.save();
+    res.send({ message: "Report successfully created", report });
   } catch (error) {
     res.send(error);
   }
-  res.send("Report successfully created.");
 });
 
 router.patch("/:reportId", async (req, res) => {
