@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const patientSchema = mongoose.Schema({
   userType: {
     type: String,
-    required: true,
     default: "patient",
   },
 
@@ -26,7 +25,6 @@ const patientSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
 
   password: {
