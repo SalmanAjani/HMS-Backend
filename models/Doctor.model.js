@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const doctorSchema = mongoose.Schema({
   userType: {
     type: String,
-
     default: "doctor",
   },
 
