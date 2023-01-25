@@ -11,28 +11,9 @@ const bedSchema = mongoose.Schema({
     required: true,
   },
 
-  patientID: {
-    type: Number,
-    required: true,
-  },
-
-  docID: {
-    type: Number,
-    required: true,
-  },
-
   occupied: {
     type: Boolean,
     required: true,
-  },
-
-  date: {
-    type: String,
-    required: true,
-  },
-
-  disease: {
-    type: String,
   },
 
   patientID: {
