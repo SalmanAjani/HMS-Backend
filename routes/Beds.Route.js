@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const beds = await BedModel.find().populate({
       path: "patientID", // populate blogs
       populate: {
-        path: ["docID", "nurseID"],
+        path: "docID",
       },
     });
     res.status(200).send(beds);
