@@ -1,83 +1,92 @@
 const mongoose = require("mongoose");
 
 const reportSchema = mongoose.Schema({
-  doctor: {
-    docName: {
-      type: String,
-      required: true,
-    },
-    mobile: {
-      type: Number,
-      required: true,
-    },
-    details: {
-      type: String,
-      required: true,
-    },
-    medicines: {
-      type: String,
-      required: true,
-    },
-    dosage: {
-      type: Number,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-    extrainfo: {
-      type: String,
-      required: true,
-    },
+  docName: {
+    type: String,
+    required: true,
   },
 
-  patient: {
-    patientName: {
-      type: String,
-      required: true,
+  docDepartment: {
+    type: String,
+    required: true,
+  },
+
+  docMobile: {
+    type: Number,
+    required: true,
+  },
+
+  medicines: [
+    {
+      medName: {
+        type: String,
+      },
+      dosage: {
+        type: Number,
+      },
+      duration: {
+        type: String,
+      },
     },
-    age: {
-      type: Number,
-      required: true,
-    },
-    gender: {
-      type: String,
-      required: true,
-    },
-    mobile: {
-      type: Number,
-      required: true,
-    },
-    bloodGroup: {
-      type: String,
-      required: true,
-    },
-    disease: {
-      type: String,
-      required: true,
-    },
-    temperature: {
-      type: Number,
-      required: true,
-    },
-    weight: {
-      type: Number,
-      required: true,
-    },
-    BP: {
-      type: Number,
-      required: true,
-    },
-    glucose: {
-      type: Number,
-      required: true,
-    },
+  ],
+
+  extrainfo: {
+    type: String,
+  },
+
+  patientName: {
+    type: String,
+    required: true,
+  },
+
+  patientAge: {
+    type: Number,
+    required: true,
+  },
+
+  patientGender: {
+    type: String,
+    required: true,
+  },
+
+  patientMobile: {
+    type: Number,
+    required: true,
+  },
+
+  patientBloodGroup: {
+    type: String,
+    required: true,
+  },
+
+  patientDisease: {
+    type: String,
+    required: true,
+  },
+
+  patientTemperature: {
+    type: Number,
+  },
+
+  patientWeight: {
+    type: Number,
+  },
+
+  patientBP: {
+    type: Number,
+  },
+
+  patientGlucose: {
+    type: Number,
   },
 
   date: {
     type: String,
     required: true,
+  },
+
+  time: {
+    type: String,
   },
 });
 
