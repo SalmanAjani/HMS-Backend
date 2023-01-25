@@ -1,7 +1,7 @@
 const express = require("express");
 const { NurseModel } = require("../models/Nurse.model");
-const { authenticate } = require("../middlewares/nurseAuth");
 require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -33,9 +33,9 @@ router.post("/login", async (req, res) => {
   try {
     const nurse = await NurseModel.findOne({ nurseID, password });
 
-    if (nurse.length > 0) {
-      const token = jwt.sign({ field: abc }, process.env.key, {
-        expiresIn: "1h",
+    if (nurse) {
+      const token = jwt.sign({ foo: "bar" }, process.env.key, {
+        expiresIn: "24h",
       });
       res.send({ message: "Login Successful.", user: nurse, token: token });
     } else {
