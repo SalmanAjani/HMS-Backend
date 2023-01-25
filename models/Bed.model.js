@@ -13,7 +13,6 @@ const bedSchema = mongoose.Schema({
 
   occupied: {
     type: Boolean,
-    required: true,
     default: true,
   },
 
