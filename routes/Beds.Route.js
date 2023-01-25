@@ -4,9 +4,8 @@ const { BedModel } = require("../models/Bed.model");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let query = req.query;
   try {
-    const beds = await BedModel.find(query);
+    const beds = await BedModel.find().populate("patientID");
     res.status(200).send(beds);
   } catch (error) {
     console.log(error);
