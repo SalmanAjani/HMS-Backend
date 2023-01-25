@@ -25,7 +25,6 @@ router.post("/register", async (req, res) => {
     // res.send("Something went wrong, unable to add Patient.");
     res.send(error);
   }
-  res.send("Patient Added Successfully");
 });
 
 router.post("/login", async (req, res) => {
