@@ -20,8 +20,7 @@ router.post("/create", async (req, res) => {
     const report = new ReportModel(payload);
     await report.save();
   } catch (error) {
-    res.send("Error occurred, unable to create a report.");
-    console.log(error);
+    res.send(error);
   }
   res.send("Report successfully created.");
 });
