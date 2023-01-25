@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
 const doctorSchema = mongoose.Schema({
+  userType: {
+    type: String,
+    required: true,
+    default: "doctor",
+  },
+
   docID: {
     type: Number,
     required: true,

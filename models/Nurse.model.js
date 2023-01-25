@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
 const nurseSchema = mongoose.Schema({
+  userType: {
+    type: String,
+    required: true,
+    default: "nurse",
+  },
+
   nurseID: {
     type: Number,
     required: true,

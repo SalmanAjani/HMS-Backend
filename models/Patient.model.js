@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
 const patientSchema = mongoose.Schema({
+  userType: {
+    type: String,
+    required: true,
+    default: "patient",
+  },
+
   patientID: {
     type: Number,
     required: true,
