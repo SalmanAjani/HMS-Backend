@@ -7,10 +7,13 @@ router.get("/", async (req, res) => {
   try {
     const beds = await BedModel.find().populate([
       {
-        path: "patientID", // populate blogs
+        path: "patientID",
         populate: {
           path: "docID",
         },
+      },
+      {
+        path: "patientID",
         populate: {
           path: "nurseID",
         },
