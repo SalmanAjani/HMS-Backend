@@ -56,6 +56,11 @@ const patientSchema = mongoose.Schema({
   details: {
     type: String,
   },
+
+  admitted: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const PatientModel = mongoose.model("patient", patientSchema);

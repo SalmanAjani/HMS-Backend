@@ -18,7 +18,6 @@ const appointmentSchema = mongoose.Schema({
 
   address: {
     type: String,
-    required: true,
   },
 
   problem: {
@@ -28,6 +27,7 @@ const appointmentSchema = mongoose.Schema({
 
   department: {
     type: String,
+    required: true,
   },
 
   time: {
