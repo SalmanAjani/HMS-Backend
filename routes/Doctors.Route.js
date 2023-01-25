@@ -28,13 +28,13 @@ router.post("/register", async (req, res) => {
   res.send("Doctor Registered Successfully");
 });
 
-router.post("/login", authenticate, async (req, res) => {
+router.post("/login", async (req, res) => {
   const { docID, password } = req.body;
   try {
     const doctor = await DoctorModel.findOne({ docID, password });
 
     if (doctor.length > 0) {
-      const token = jwt.sign({ doctorID: doctor[0]._id }, process.env.key, {
+      const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "1h",
       });
       res.send({ messsage: "Login Successful.", user: doctor, token: token });
