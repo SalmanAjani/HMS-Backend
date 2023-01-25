@@ -4,9 +4,10 @@ const { PaymentModel } = require("../models/Payment.model");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let query = req.query;
   try {
-    const payments = await PaymentModel.find(query);
+    const payments = await PaymentModel.find().populate({
+      path: "reportID",
+    });
     res.status(200).send(payments);
   } catch (error) {
     console.log(error);

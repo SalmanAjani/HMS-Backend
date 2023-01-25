@@ -1,29 +1,15 @@
 const mongoose = require("mongoose");
 
 const paymentSchema = mongoose.Schema({
-  patientID: {
-    type: Number,
+  reportID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "report",
     required: true,
   },
 
-  patientName: {
-    type: String,
-    required: true,
-  },
-
-  docName: {
-    type: String,
-    required: true,
-  },
-
-  reportRef: {
-    type: Number,
-    required: true,
-  },
-
-  date: {
-    type: String,
-    required: true,
+  paid: {
+    type: Boolean,
+    default: false,
   },
 });
 
