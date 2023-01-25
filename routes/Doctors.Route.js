@@ -34,10 +34,7 @@ router.post("/login", async (req, res) => {
     const doctor = await DoctorModel.find({ docID, password });
 
     if (doctor.length > 0) {
-      const token = jwt.sign({ foo: "bar" }, process.env.key, {
-        expiresIn: "24h",
-      });
-      res.send({ messsage: "Login Successful.", user: doctor, token: token });
+      res.send({ messsage: "Login Successful.", user: doctor });
     } else {
       res.send("Wrong credentials, Please try again.");
     }
