@@ -6,6 +6,11 @@ const bedSchema = mongoose.Schema({
     required: true,
   },
 
+  roomNumber: {
+    type: Number,
+    required: true,
+  },
+
   patientID: {
     type: Number,
     required: true,
@@ -24,6 +29,10 @@ const bedSchema = mongoose.Schema({
   date: {
     type: String,
     required: true,
+  },
+
+  disease: {
+    type: String,
   },
 });
 
