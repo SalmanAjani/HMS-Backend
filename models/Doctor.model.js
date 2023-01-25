@@ -22,7 +22,6 @@ const doctorSchema = mongoose.Schema({
 
   email: {
     type: String,
-    unique: true,
   },
 
   password: {
