@@ -62,12 +62,12 @@ const patientSchema = mongoose.Schema({
     default: true,
   },
 
-  docId: {
+  docID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "doctor",
     required: true,
   },
-  nurseId: {
+  nurseID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "nurse",
     required: true,
