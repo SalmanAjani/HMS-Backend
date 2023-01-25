@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
     const doctor = await DoctorModel.find({ docID, password });
 
     if (doctor.length > 0) {
-      res.send({ msg: "Login Successful." });
+      res.send({ messsage: "Login Successful.", user: doctor });
     } else {
       res.send("Wrong credentials, Please try again.");
     }

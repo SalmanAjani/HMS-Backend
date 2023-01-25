@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
     const admin = await AdminModel.find({ adminID, password });
 
     if (admin.length > 0) {
-      res.send({ msg: "Login Successful." });
+      res.send({ messsage: "Login Successful.", user: admin });
     } else {
       res.send("Wrong credentials, Please try again.");
     }
