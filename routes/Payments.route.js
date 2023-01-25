@@ -15,16 +15,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/send", async (req, res) => {
+router.post("/add", async (req, res) => {
   const payload = req.body;
   try {
     const payment = new PaymentModel(payload);
     await payment.save();
+    res.send({ message: "Payment created successfully" });
   } catch (error) {
     res.send("Error occurred, unable to receive the payment.");
     console.log(error);
   }
-  res.send("Payment received successfully.");
 });
 
 router.patch("/:paymentId", async (req, res) => {
