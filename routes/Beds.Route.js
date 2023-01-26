@@ -87,7 +87,7 @@ router.put("/:bedId", async (req, res) => {
     const updatedBed = BedModel.findById(id);
     return res.status(200).send({ message: `Bed  updated`, bed: updatedBed });
   } catch (error) {
-    res.send({ message: "Something went wrong, unable to Update." });
+    res.send({ message:error});
   }
 });
 
