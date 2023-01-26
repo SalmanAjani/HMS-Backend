@@ -26,6 +26,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/single", async (req, res) => {
+  const { bedNumber, roomNumber } = req.body;
+  try {
+    const bed = await BedModel.findOne({ bedNumber, roomNumber });
+    if (bed) {
+      return res.send({ message: "Available", id: bed._id });
+    }
+    res.send({ message: "Occupied", id: bed._id });
+  } catch (error) {
+    console.log(error);
+    res.send({ error: "Something went wrong, unable to fetch bed." });
+  }
+});
+
 router.post("/add", async (req, res) => {
   const payload = req.body;
   try {
