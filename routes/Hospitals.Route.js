@@ -23,8 +23,8 @@ router.get("/", async (req, res) => {
     let data = {
       admin: admins.length,
       patient: patients.length,
-      ambulance: patients.length,
-      nurse: patients.length,
+      ambulance: ambulances.length,
+      nurse: nurses.length,
       bed: beds.length,
       report: reports.length,
       doctor: doctors.length,
