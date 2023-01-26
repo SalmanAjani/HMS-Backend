@@ -38,7 +38,7 @@ router.post("/single", async (req, res) => {
     }
     return res.send({ message: "Occupied" });
   } catch (error) {
-    res.send(error, { message: "No Bed" });
+    res.send({ message: "No Bed", error });
   }
 });
 
