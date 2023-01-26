@@ -74,6 +74,22 @@ router.patch("/:bedId", async (req, res) => {
     res.status(400).send({ error: "Something went wrong, unable to Update." });
   }
 });
+router.put("/:bedId", async (req, res) => {
+  const id = req.params.bedId;
+  const payload = req.body;
+  try {
+    const bed = BedModel.findById(id);
+    if (!bed) {
+      return res.status(404).send({ message: `Bed not found` });
+    }
+    await BedModel.findByIdAndUpdate({ _id: id }, payload);
+    await BedModel.findByIdAndUpdate({ _id: id }, { $unset: { patientID: 1 } });
+    const updatedBed = BedModel.findById(id);
+    return res.status(200).send({ message: `Bed  updated`, bed: updatedBed });
+  } catch (error) {
+    res.send({ message: "Something went wrong, unable to Update." });
+  }
+});
 
 router.delete("/:bedId", async (req, res) => {
   const id = req.params.bedId;
