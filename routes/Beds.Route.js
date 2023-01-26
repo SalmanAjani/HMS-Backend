@@ -40,16 +40,21 @@ router.get("/single", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
-  const payload = req.body;
+  const { bedNumber, roomNumber } = req.body;
+
   try {
-    const bed = new BedModel(payload);
-    await bed.save();
-    res.send(bed);
+    const bed = await BedModel.find({ bedNumber, roomNumber });
+    if (bed.length > 0) {
+      return res.send({ message: "Bed already present" });
+    } else {
+      const bed = new BedModel(req.body);
+      await bed.save();
+      return res.send({ message: "Bed added successfully", bed });
+    }
   } catch (error) {
     res.send("Something went wrong, unable to add Bed.");
     console.log(error);
   }
-  res.send("Bed Added Successfully");
 });
 
 router.patch("/:bedId", async (req, res) => {
