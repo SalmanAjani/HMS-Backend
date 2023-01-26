@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/single", async (req, res) => {
+router.post("/single", async (req, res) => {
   const { bedNumber, roomNumber } = req.body;
   try {
     const bed = await BedModel.find({ bedNumber, roomNumber });
