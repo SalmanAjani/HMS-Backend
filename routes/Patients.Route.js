@@ -18,11 +18,10 @@ router.get("/", async (req, res) => {
 // This register route will be used when adding a patient via patient or doctor or admin
 router.post("/register", async (req, res) => {
   const { email } = req.body;
-
   try {
     const patient = await PatientModel.findOne({ email });
     if (!patient) {
-      const newPatient = new PatientModel(payload);
+      const newPatient = new PatientModel(req.body);
       await patient.save();
       return res.send({ patient: newPatient });
     }
