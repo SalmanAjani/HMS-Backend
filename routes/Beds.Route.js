@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 router.get("/single", async (req, res) => {
   const { bedNumber, roomNumber } = req.body;
   try {
-    const bed = await BedModel.findOne({ bedNumber, roomNumber });
+    const bed = await BedModel.find({ bedNumber, roomNumber });
     res.send(bed);
   } catch (error) {
     res.send(error, { message: "No Bed" });
