@@ -35,7 +35,7 @@ router.get("/single", async (req, res) => {
     }
     res.send({ message: "Occupied", id: bed._id });
   } catch (error) {
-    console.log(error);
+    res.send(error);
     res.send({ error: "Something went wrong, unable to fetch bed." });
   }
 });
