@@ -36,12 +36,12 @@ router.post("/login", async (req, res) => {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });
-      res.send({ messsage: "Login Successful.", user: doctor, token: token });
+      res.send({ message: "Successful", user: doctor, token: token });
     } else {
-      res.send("Wrong credentials, Please try again.");
+      res.send({ message: "Wrong credentials" });
     }
   } catch (error) {
-    console.log("Error occurred, unable to Login.");
+    console.log({ message: "Error" });
     console.log(error);
   }
 });
