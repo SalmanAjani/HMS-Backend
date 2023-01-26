@@ -50,11 +50,12 @@ router.patch("/:nurseId", async (req, res) => {
   const id = req.params.nurseId;
   const payload = req.body;
   try {
-    const nurse = await NurseModel.findByIdAndUpdate({ _id: id }, payload);
+    await NurseModel.findByIdAndUpdate({ _id: id }, payload);
+    const nurse = await NurseModel.findById(id);
     if (!nurse) {
-      res.status(404).send({ msg: `Nurse with id ${id} not found` });
+      return res.status(404).send({ message: `Nurse with id ${id} not found` });
     }
-    res.status(200).send(`Nurse with id ${id} updated`);
+    res.status(200).send({ message: `Nurse Updated`, user: nurse });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error: "Something went wrong, unable to Update." });
