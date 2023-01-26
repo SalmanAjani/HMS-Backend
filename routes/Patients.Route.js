@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const patients = await PatientModel.find();
-    res.status(200).send(patients);
+    res.status(200).send({patients});
   } catch (error) {
     console.log(error);
     res.status(400).send({ error: "Something went wrong" });
