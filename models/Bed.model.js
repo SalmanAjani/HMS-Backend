@@ -12,14 +12,13 @@ const bedSchema = mongoose.Schema({
   },
 
   occupied: {
-    type: Boolean,
-    default: true,
+    type: String,
+    required: true,
   },
 
   patientID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "patient",
-    required: true,
   },
 });
 
