@@ -71,7 +71,7 @@ router.patch("/:bedId", async (req, res) => {
     return res.status(200).send(`Bed with id ${id} updated`);
   } catch (error) {
     console.log(error);
-    res.status(400).send({ error: "Something went wrong, unable to Update." });
+    res.status(400).send({ error });
   }
 });
 router.put("/:bedId", async (req, res) => {
