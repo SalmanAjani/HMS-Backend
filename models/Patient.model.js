@@ -53,6 +53,10 @@ const patientSchema = mongoose.Schema({
     type: String,
   },
 
+  disease: {
+    type: String,
+  },
+
   details: {
     type: String,
   },
