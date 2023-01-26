@@ -53,10 +53,6 @@ const nurseSchema = mongoose.Schema({
     type: String,
   },
 
-  department: {
-    type: String,
-  },
-
   image: {
     type: String,
   },
