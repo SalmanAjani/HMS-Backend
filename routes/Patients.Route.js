@@ -45,10 +45,10 @@ router.post("/login", async (req, res) => {
       });
       res.send({ message: "Login Successful.", user: patient, token: token });
     } else {
-      res.send("Wrong credentials, Please try again.");
+      res.send({message:"Wrong credentials, Please try again."});
     }
   } catch (error) {
-    console.log("Error occurred, unable to Login.");
+    console.log({message:"Error occurred, unable to Login."});
     console.log(error);
   }
 });
