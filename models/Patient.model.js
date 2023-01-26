@@ -33,6 +33,10 @@ const patientSchema = mongoose.Schema({
     type: Number,
   },
 
+  department: {
+    type: String,
+  },
+  
   gender: {
     type: String,
   },
@@ -73,13 +77,11 @@ const patientSchema = mongoose.Schema({
   docID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "doctor",
-    required: true,
   },
 
   nurseID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "nurse",
-    required: true,
   },
 });
 
