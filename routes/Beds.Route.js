@@ -63,9 +63,9 @@ router.patch("/:bedId", async (req, res) => {
   try {
     const bed = await BedModel.findByIdAndUpdate({ _id: id }, payload);
     if (!bed) {
-      res.status(404).send({ msg: `Bed with id ${id} not found` });
+      return res.status(404).send({ msg: `Bed with id ${id} not found` });
     }
-    res.status(200).send(`Bed with id ${id} updated`);
+    return res.status(200).send(`Bed with id ${id} updated`);
   } catch (error) {
     console.log(error);
     res.status(400).send({ error: "Something went wrong, unable to Update." });
