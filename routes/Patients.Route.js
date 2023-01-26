@@ -20,12 +20,12 @@ router.post("/register", async (req, res) => {
   const { email } = req.body;
   try {
     const patient = await PatientModel.findOne({ email });
-    if (!patient) {
-      const newPatient = new PatientModel(req.body);
-      await patient.save();
-      return res.send({ patient: newPatient });
+    if (patient) {
+      return res.send({ message: "Patient already exists" });
     }
-    return res.send({ message: "Patient already exists" });
+    const newPatient = new PatientModel(req.body);
+    await newPatient.save();
+    res.send({ patient: newPatient });
   } catch (error) {
     res.send({ error });
   }
