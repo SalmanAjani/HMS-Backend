@@ -26,7 +26,7 @@ const patientSchema = mongoose.Schema({
 
   password: {
     type: String,
-    required: true,
+    default: "password",
   },
 
   age: {
@@ -36,7 +36,7 @@ const patientSchema = mongoose.Schema({
   department: {
     type: String,
   },
-  
+
   gender: {
     type: String,
   },
