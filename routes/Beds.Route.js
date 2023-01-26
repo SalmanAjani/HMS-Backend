@@ -31,7 +31,7 @@ router.get("/single", async (req, res) => {
   try {
     const bed = await BedModel.find({ bedNumber, roomNumber });
     if (bed[0].occupied === "available") {
-      return res.send({ message: "Available", id: bed._id });
+      return res.send({ message: "Available", id: bed[0]._id });
     }
     return res.send({ message: "Occupied" });
   } catch (error) {
