@@ -76,33 +76,32 @@ router.delete("/:adminId", async (req, res) => {
   }
 });
 
-router.post("/forgotPassword", (req, res) => {
+router.post("/forgotPassword", async (req, res) => {
   const email = req.body.email;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
+  // let testAccount = await nodemailer.createTestAccount();
+
+  let transporter = await nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
     auth: {
-      admin: "salmanajani26@gmail.com",
-      pass: process.env.gmailPass,
+      user: "louie.aufderhar@ethereal.email",
+      pass: "zmeggtj2pDyAteje9b",
     },
   });
 
-  const mailOptions = {
-    from: "salmanajani26@gmail.com",
+  let info = await transporter.sendMail({
+    from: "<salmanajani26@gmail.com>",
     to: email,
     subject: "Password Reset",
-    text: "Please click the link below to reset your password: https://zany-gray-clam-gear.cyclic.app/resetPassword",
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      res.send(error);
-      res.status(500).send("Error sending email");
-    } else {
-      console.log("Email sent: " + info.response);
-      res.status(200).send("Password reset email sent");
-    }
+    text: "Hello world",
+    html: "Hello Again",
   });
+
+  console.log("Email sent: " + info.messageid);
+
+  res.json(info);
+  res.send("Mail sent");
 });
 
 router.post("/resetPassword", (req, res) => {
