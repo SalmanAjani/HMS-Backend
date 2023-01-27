@@ -29,8 +29,7 @@ router.post("/register", async (req, res) => {
     const data = await DoctorModel.findOne({ email });
     return res.send({ data, message: "Registered" });
   } catch (error) {
-    res.send(error);
-    console.log(error);
+    res.send({ message: "error" });
   }
 });
 

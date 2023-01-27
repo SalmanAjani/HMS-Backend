@@ -15,17 +15,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.post("/register", async (req, res) => {
-  const payload = req.body;
+  const { email } = req.body;
   try {
-    const nurse = new NurseModel(payload);
-    await nurse.save();
+    const nurse = await NurseModel.findOne({ email });
+    if (nurse) {
+      return res.send({
+        message: "Nurse already exists",
+      });
+    }
+    let value = new NurseModel(req.body);
+    await value.save();
+    const data = await NurseModel.findOne({ email });
+    return res.send({ data, message: "Registered" });
   } catch (error) {
-    res.send("Something went wrong, unable to Register.");
-    console.log(error);
+    res.send({ message: "error" });
   }
-  res.send("Nurse Registered Successfully");
 });
+
 
 router.post("/login", async (req, res) => {
   const { nurseID, password } = req.body;

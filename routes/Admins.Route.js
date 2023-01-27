@@ -17,16 +17,23 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const payload = req.body;
+  const { email } = req.body;
   try {
-    const admin = new AdminModel(payload);
-    await admin.save();
+    const admin = await AdminModel.findOne({ email });
+    if (admin) {
+      return res.send({
+        message: "Admin already exists",
+      });
+    }
+    let value = new AdminModel(req.body);
+    await value.save();
+    const data = await AdminModel.findOne({ email });
+    return res.send({ data, message: "Registered" });
   } catch (error) {
-    res.send("Something went wrong, unable to Register.");
-    console.log(error);
+    res.send({ message: "error" });
   }
-  res.send("Admin Registered Successfully");
 });
+
 
 router.post("/login", async (req, res) => {
   const { adminID, password } = req.body;
