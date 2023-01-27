@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
     const doctor = new DoctorModel(payload);
     await doctor.save();
   } catch (error) {
-    res.send("Something went wrong, unable to Register.");
+    res.send(error);
     console.log(error);
   }
   res.send("Doctor Registered Successfully");
