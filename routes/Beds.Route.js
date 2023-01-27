@@ -74,7 +74,8 @@ router.patch("/:bedId", async (req, res) => {
     res.status(400).send({ error });
   }
 });
-router.patch("/discharge", async (req, res) => {
+
+router.put("/discharge", async (req, res) => {
   // const { _id } = req.body;
   // try {
   //   const bed = BedModel.findById(_id);
@@ -89,7 +90,7 @@ router.patch("/discharge", async (req, res) => {
   //   res.send({ message: error });
   // }
 
-  res.send({ message: "Successfull" });
+  res.send({ message: "Successful" });
 });
 
 router.delete("/:bedId", async (req, res) => {
