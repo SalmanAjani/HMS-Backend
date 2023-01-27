@@ -16,11 +16,17 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const payload = req.body;
+  const { email } = req.body;
   try {
-    let value = new DoctorModel(payload);
+    const doctor = await DoctorModel.findOne({ email });
+    if (doctor) {
+      return res.send({
+        message: "Doctor already exists",
+      });
+    }
+    let value = new DoctorModel(req.body);
     await value.save();
-    const data = await DoctorModel.findOne({ docID: payload.docID });
+    const data = await DoctorModel.findOne({ email });
     return res.send({ data, message: "Registered" });
   } catch (error) {
     res.send(error);
