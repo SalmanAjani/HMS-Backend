@@ -44,7 +44,7 @@ const reportSchema = mongoose.Schema({
     required: true,
   },
   email: {
-    type: Number,
+    type: String,
     required: true,
   },
   patientGender: {
@@ -64,7 +64,6 @@ const reportSchema = mongoose.Schema({
 
   patientDisease: {
     type: String,
-    required: true,
   },
 
   patientTemperature: {
@@ -85,7 +84,6 @@ const reportSchema = mongoose.Schema({
 
   date: {
     type: String,
-    required: true,
   },
 
   time: {
