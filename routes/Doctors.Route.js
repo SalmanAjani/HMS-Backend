@@ -20,11 +20,11 @@ router.post("/register", async (req, res) => {
   try {
     const doctor = new DoctorModel(payload);
     await doctor.save();
+    return res.send(doctor);
   } catch (error) {
     res.send(error);
     console.log(error);
   }
-  res.send("Doctor Registered Successfully");
 });
 
 router.post("/login", async (req, res) => {
