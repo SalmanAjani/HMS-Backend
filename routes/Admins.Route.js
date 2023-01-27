@@ -83,7 +83,7 @@ router.post("/forgotPassword", (req, res) => {
     service: "gmail",
     auth: {
       admin: "salmanajani26@gmail.com",
-      pass: "Alfa@0426",
+      pass: process.env.gmailPass,
     },
   });
 
