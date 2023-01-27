@@ -76,21 +76,21 @@ router.patch("/:bedId", async (req, res) => {
 });
 
 router.put("/discharge", async (req, res) => {
-  // const { _id } = req.body;
-  // try {
-  //   const bed = BedModel.findById(_id);
-  //   if (!bed) {
-  //     return res.status(404).send({ message: `Bed not found` });
-  //   }
-  //   await BedModel.findByIdAndUpdate(_id, req.body);
-  //   await BedModel.updateOne({ _id }, { $unset: { patientID: 1 } });
-  //   const updatedBed = BedModel.findById(id);
-  //   return res.status(200).send({ message: `Bed  updated`, bed: updatedBed });
-  // } catch (error) {
-  //   res.send({ message: error });
-  // }
+  const { _id } = req.body;
+  try {
+    const bed = BedModel.findById(_id);
+    if (!bed) {
+      return res.status(404).send({ message: `Bed not found` });
+    }
+    await BedModel.findByIdAndUpdate(_id, req.body);
+    await BedModel.updateOne({ _id }, { $unset: { patientID: 1 } });
+    const updatedBed = BedModel.findById(id);
+    return res.status(200).send({ message: `Bed  updated`, bed: updatedBed });
+  } catch (error) {
+    res.send({ message: error });
+  }
 
-  res.send({ message: "Successful" });
+  // res.send({ message: "Successful" });
 });
 
 router.delete("/:bedId", async (req, res) => {
