@@ -77,31 +77,28 @@ router.delete("/:adminId", async (req, res) => {
 });
 
 router.post("/forgotPassword", (req, res) => {
-  const email = req.body.email;
+  const email = "rajendrapatelofficial@gmail.com";
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      admin: "salmanajani26@gmail.com",
-      pass: process.env.gmailPass,
+      user: "agrawaljoy1@gmail.com",
+      pass: "zxkyjqfuhiizmxrg",
     },
   });
 
   const mailOptions = {
-    from: "salmanajani26@gmail.com",
+    from: "agrawaljoy1@gmail.com",
     to: email,
     subject: "Password Reset",
-    text: "Please click the link below to reset your password: https://zany-gray-clam-gear.cyclic.app/resetPassword",
+    text: "hello",
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      res.send(error);
-      res.status(500).send("Error sending email");
-    } else {
-      console.log("Email sent: " + info.response);
-      res.status(200).send("Password reset email sent");
+      return res.send(error);
     }
+    return res.send("Password reset email sent");
   });
 });
 
