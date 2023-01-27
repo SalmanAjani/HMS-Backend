@@ -43,7 +43,10 @@ const reportSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-
+  email: {
+    type: Number,
+    required: true,
+  },
   patientGender: {
     type: String,
     required: true,
