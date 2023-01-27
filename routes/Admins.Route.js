@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const { NurseModel } = require("../models/Nurse.model");
 const { DoctorModel } = require("../models/Doctor.model");
+const { PatientModel } = require("../models/Patient.model");
 
 const router = express.Router();
 
@@ -118,6 +119,11 @@ router.post("/forgot", async (req, res) => {
 
   if (type == "nurse") {
     user = await NurseModel.find({ email });
+    userId = user[0]?.nurseID;
+    password = user[0]?.password;
+  }
+  if (type == "patient") {
+    user = await PatientModel.find({ email });
     userId = user[0]?.nurseID;
     password = user[0]?.password;
   }
