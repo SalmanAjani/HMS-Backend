@@ -3,6 +3,8 @@ const { AdminModel } = require("../models/Admin.model");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const { NurseModel } = require("../models/Nurse.model");
+const { DoctorModel } = require("../models/Doctor.model");
 
 const router = express.Router();
 
@@ -33,7 +35,6 @@ router.post("/register", async (req, res) => {
     res.send({ message: "error" });
   }
 });
-
 
 router.post("/login", async (req, res) => {
   const { adminID, password } = req.body;
@@ -109,24 +110,50 @@ router.post("/password", (req, res) => {
   });
 });
 
-router.post("/registerPassword", (req, res) => {
-  const password = req.body.password;
-  const adminID = req.body.adminID;
+router.post("/forgot", async (req, res) => {
+  const { email, type } = req.body;
+  let user;
+  let userId;
+  let password;
+  if (type == "nurse") {
+    user = await NurseModel.findOne({ email });
+    userId = user?.nurseID;
+    password = user?.password;
+  }
+  if (type == "admin") {
+    user = await AdminModel.findOne({ email });
+    userId = user?.adminID;
+    password = user?.password;
+  }
+  if (type == "doctor") {
+    user = await DoctorModel.findOne({ email });
+    userId = user?.docID;
+    password = user?.password;
+  }
+  if (!user) {
+    return res.send({ message: "User not found" });
+  }
 
-  AdminModel.findById(adminID, (err, admin) => {
-    if (err) {
-      res.status(500).send("Error finding admin");
-    } else if (!admin) {
-      res.status(404).send("Admin not found");
-    } else {
-      AdminModel.findByIdAndUpdate(admin._id, { password: password }, (err) => {
-        if (err) {
-          res.status(500).send("Error updating password");
-        } else {
-          res.status(200).send("Password updated successfully");
-        }
-      });
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "agrawaljoy1@gmail.com",
+      pass: "zxkyjqfuhiizmxrg",
+    },
+  });
+
+  const mailOptions = {
+    from: "agrawaljoy1@gmail.com",
+    to: email,
+    subject: "Account ID and Password",
+    text: `This is your User Id : ${userId} and  Password : ${password} .`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.send(error);
     }
+    return res.send("Password reset email sent");
   });
 });
 
