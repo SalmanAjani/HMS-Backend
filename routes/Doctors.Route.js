@@ -18,7 +18,8 @@ router.get("/", async (req, res) => {
 router.post("/register", async (req, res) => {
   const payload = req.body;
   try {
-    await DoctorModel.create(payload);
+    let value =  new DoctorModel(payload)
+    await value.save()
     const data = await DoctorModel.findOne({ docID: payload.docID });
     return res.send(data);
   } catch (error) {
