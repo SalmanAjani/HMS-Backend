@@ -18,8 +18,7 @@ router.get("/", async (req, res) => {
 router.post("/register", async (req, res) => {
   const payload = req.body;
   try {
-    const doctor = new DoctorModel(payload);
-    await doctor.save();
+    const doctor = DoctorModel.create(payload);
     return res.send(doctor);
   } catch (error) {
     res.send(error);
