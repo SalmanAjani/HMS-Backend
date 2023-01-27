@@ -2,13 +2,14 @@ const express = require("express");
 const { PatientModel } = require("../models/Patient.model");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const { ReportModel } = require("../models/Report.model");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
     const patients = await PatientModel.find();
-    res.status(200).send({patients});
+    res.status(200).send({ patients });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error: "Something went wrong" });
@@ -43,12 +44,19 @@ router.post("/login", async (req, res) => {
       const token = jwt.sign({ foo: "bar" }, process.env.key, {
         expiresIn: "24h",
       });
-      res.send({ message: "Login Successful.", user: patient, token: token , report:[] });
+      let email = patient.email;
+      let report = await ReportModel.find({ email });
+      res.send({
+        message: "Login Successful.",
+        user: patient,
+        token: token,
+        report,
+      });
     } else {
-      res.send({message:"Wrong credentials, Please try again."});
+      res.send({ message: "Wrong credentials, Please try again." });
     }
   } catch (error) {
-    console.log({message:"Error occurred, unable to Login."});
+    console.log({ message: "Error occurred, unable to Login." });
     console.log(error);
   }
 });
