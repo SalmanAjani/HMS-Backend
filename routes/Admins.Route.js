@@ -76,8 +76,8 @@ router.delete("/:adminId", async (req, res) => {
   }
 });
 
-router.post("/forgotPassword", (req, res) => {
-  const email = "rajendrapatelofficial@gmail.com";
+router.post("/password", (req, res) => {
+  const { email, userId, password } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -90,8 +90,8 @@ router.post("/forgotPassword", (req, res) => {
   const mailOptions = {
     from: "agrawaljoy1@gmail.com",
     to: email,
-    subject: "Password Reset",
-    text: "hello",
+    subject: "Account ID and Password",
+    text: `This is your User Id : ${userId} and  Password : ${password} .`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -102,7 +102,7 @@ router.post("/forgotPassword", (req, res) => {
   });
 });
 
-router.post("/resetPassword", (req, res) => {
+router.post("/registerPassword", (req, res) => {
   const password = req.body.password;
   const adminID = req.body.adminID;
 
