@@ -115,21 +115,25 @@ router.post("/forgot", async (req, res) => {
   let user;
   let userId;
   let password;
+
   if (type == "nurse") {
-    user = await NurseModel.findOne({ email });
-    userId = user?.nurseID;
-    password = user?.password;
+    user = await NurseModel.find({ email });
+    userId = user[0]?.nurseID;
+    password = user[0]?.password;
   }
+
   if (type == "admin") {
-    user = await AdminModel.findOne({ email });
-    userId = user?.adminID;
-    password = user?.password;
+    user = await AdminModel.find({ email });
+    userId = user[0]?.adminID;
+    password = user[0]?.password;
   }
+
   if (type == "doctor") {
-    user = await DoctorModel.findOne({ email });
-    userId = user?.docID;
-    password = user?.password;
+    user = await DoctorModel.find({ email });
+    userId = user[0]?.docID;
+    password = user[0]?.password;
   }
+
   if (!user) {
     return res.send({ message: "User not found" });
   }
