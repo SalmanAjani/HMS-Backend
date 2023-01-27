@@ -96,6 +96,7 @@ router.post("/forgotPassword", (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      res.send(error);
       res.status(500).send("Error sending email");
     } else {
       console.log("Email sent: " + info.response);
