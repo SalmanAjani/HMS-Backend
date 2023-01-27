@@ -18,8 +18,9 @@ router.get("/", async (req, res) => {
 router.post("/register", async (req, res) => {
   const payload = req.body;
   try {
-    const doctor = DoctorModel.create(payload);
-    return res.send(doctor);
+    await DoctorModel.create(payload);
+    const data = await DoctorModel.findOne({ docID: payload.docID });
+    return res.send(data);
   } catch (error) {
     res.send(error);
     console.log(error);
